@@ -1,9 +1,24 @@
 // Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
     const canvas = document.getElementById('bouncingCanvas');
+    if (!canvas) {
+        console.error('Canvas element not found');
+        return;
+    }
+
     const ctx = canvas.getContext('2d');
+    if (!ctx) {
+        console.error('Could not get canvas context');
+        return;
+    }
+
     const speedSlider = document.getElementById('speedSlider');
     const speedValue = document.querySelector('.speed-value');
+
+    if (!speedSlider || !speedValue) {
+        console.error('Speed control elements not found');
+        return;
+    }
 
     // Set canvas size
     canvas.width = 800;
