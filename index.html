@@ -16,8 +16,9 @@
             min-height: 100vh;
             background: linear-gradient(to bottom, #E0EDEF, #EDF4F6);
             font-family: 'Poppins', sans-serif;
-            padding: 40px;
+            padding: 20px;
             box-sizing: border-box;
+            gap: 20px;
         }
         canvas {
             border: 1px solid #89C2BD;
@@ -31,11 +32,11 @@
             box-shadow: 0 1px 9px 0 rgba(0, 0, 0, 0.08);
         }
         .controls {
-            margin-top: 24px;
+            margin-top: 0;
             text-align: center;
             width: fit-content;
             min-width: 500px;
-            padding: 40px;
+            padding: 20px;
             background: #85C7D5;
             border-radius: 16px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -64,7 +65,7 @@
             border-radius: 20px;
             min-width: 45px;
             justify-content: center;
-            margin: 24px auto 15px;
+            margin: 15px auto 10px;
             text-transform: uppercase;
         }
         .slider-container {
@@ -75,7 +76,7 @@
         }
         .control-label {
             display: block;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: #077167;
             font-weight: 600;
             font-size: 24px;
@@ -129,21 +130,54 @@
         /* Add header styles before the media queries */
         .header {
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 0;
             padding: 0 20px;
         }
 
         .header h1 {
             color: #212529;
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin: 0;
             font-weight: 600;
         }
 
         .header .subtext {
             color: #6c757d;
-            font-size: 1.1rem;
-            margin: 8px 0 0;
+            font-size: 1rem;
+            margin: 4px 0 0;
+        }
+
+        /* Add notification styles before the media queries */
+        .notification {
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(7, 113, 103, 0.5);
+            color: #333333;
+            padding: 16px 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+            font-weight: 400;
+            transition: all 0.3s ease-in-out;
+            z-index: 9999;
+            text-align: center;
+            max-width: 90%;
+            width: auto;
+            min-width: 300px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .notification.show {
+            top: 40px;
+            opacity: 1;
+        }
+
+        .notification.hide {
+            top: -100px;
+            opacity: 0;
         }
 
         /* Media Queries for Responsive Design */
@@ -228,6 +262,9 @@
     </style>
 </head>
 <body>
+    <div id="speedNotification" class="notification">
+        Woah! These balls are moving faster than my coffee addiction! ☕
+    </div>
     <div class="header">
         <h1>Bouncing Balls Madness</h1>
         <p class="subtext">Use the slider to increase and decrease the speed of the balls</p>
@@ -237,7 +274,7 @@
         <label for="speedSlider" class="control-label">Speed Control</label>
         <div class="slider-group">
             <div class="slider-container">
-                <input type="range" id="speedSlider" min="1" max="20" value="12" style="width: 100%;">
+                <input type="range" id="speedSlider" min="1" max="20" value="10" style="width: 100%;">
                 <div class="speed-labels">
                     <span>1x</span>
                     <span>5x</span>
@@ -246,7 +283,7 @@
                     <span>20x</span>
                 </div>
             </div>
-            <span class="speed-value">12x</span>
+            <span class="speed-value">10x</span>
         </div>
     </div>
 </body>
