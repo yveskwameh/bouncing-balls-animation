@@ -24,10 +24,19 @@ window.addEventListener('load', () => {
     }
     console.log('Speed controls found');
 
-    // Set canvas size
-    canvas.width = 800;
-    canvas.height = 600;
-    console.log('Canvas size set:', canvas.width, canvas.height);
+    // Set canvas size based on its display size
+    function resizeCanvas() {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+        console.log('Canvas size updated:', canvas.width, canvas.height);
+    }
+
+    // Initial resize
+    resizeCanvas();
+
+    // Handle window resize
+    window.addEventListener('resize', resizeCanvas);
 
     // Global speed multiplier
     let speedMultiplier = 12;
