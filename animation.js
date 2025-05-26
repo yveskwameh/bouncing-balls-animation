@@ -1,16 +1,19 @@
 // Wait for DOM to be fully loaded
 window.addEventListener('load', () => {
+    console.log('Window loaded');
     const canvas = document.getElementById('bouncingCanvas');
     if (!canvas) {
         console.error('Canvas element not found');
         return;
     }
+    console.log('Canvas found:', canvas);
 
     const ctx = canvas.getContext('2d');
     if (!ctx) {
         console.error('Could not get canvas context');
         return;
     }
+    console.log('Canvas context obtained');
 
     const speedSlider = document.getElementById('speedSlider');
     const speedValue = document.querySelector('.speed-value');
@@ -19,10 +22,12 @@ window.addEventListener('load', () => {
         console.error('Speed control elements not found');
         return;
     }
+    console.log('Speed controls found');
 
     // Set canvas size
     canvas.width = 800;
     canvas.height = 600;
+    console.log('Canvas size set:', canvas.width, canvas.height);
 
     // Global speed multiplier
     let speedMultiplier = 12;
@@ -39,6 +44,7 @@ window.addEventListener('load', () => {
             this.dx = this.baseDx;
             this.dy = this.baseDy;
             this.mass = radius; // Mass proportional to radius
+            console.log('Ball created:', { x, y, color });
         }
 
         updateSpeed() {
@@ -48,11 +54,15 @@ window.addEventListener('load', () => {
         }
 
         draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = this.color;
-            ctx.fill();
-            ctx.closePath();
+            try {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.closePath();
+            } catch (error) {
+                console.error('Error drawing ball:', error);
+            }
         }
 
         update(balls) {
@@ -143,6 +153,7 @@ window.addEventListener('load', () => {
         new Ball(500, 200, 20, '#00CED1'),    // Dark turquoise
         new Ball(250, 450, 20, '#FF6347')     // Tomato
     ];
+    console.log('Balls created:', balls.length);
 
     // Speed control event listener
     speedSlider.addEventListener('input', (e) => {
@@ -153,15 +164,20 @@ window.addEventListener('load', () => {
 
     // Animation loop
     function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        balls.forEach(ball => {
-            ball.update(balls);
-        });
+        try {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            balls.forEach(ball => {
+                ball.update(balls);
+            });
 
-        requestAnimationFrame(animate);
+            requestAnimationFrame(animate);
+        } catch (error) {
+            console.error('Error in animation loop:', error);
+        }
     }
 
     // Start animation
+    console.log('Starting animation');
     animate();
 }); 
