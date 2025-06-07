@@ -100,7 +100,7 @@ window.addEventListener('load', () => {
     // Global speed multiplier
     let speedMultiplier = 12;
 
-    // Add rate limiting variables at the top level
+    // Rate limiting for pun notifications
     let lastPunTime = 0;
     const PUN_COOLDOWN = 10000; // 10 seconds cooldown between puns
 
