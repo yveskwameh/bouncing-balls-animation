@@ -82,6 +82,7 @@ window.addEventListener('load', () => {
         return;
     }
     console.log('Speed controls found');
+    speedValue.textContent = `${speedMultiplier}x`;
 
     // Set canvas size based on its display size
     function resizeCanvas() {
@@ -98,7 +99,7 @@ window.addEventListener('load', () => {
     window.addEventListener('resize', resizeCanvas);
 
     // Global speed multiplier
-    let speedMultiplier = 12;
+    let speedMultiplier = 10;
 
     // Rate limiting for pun notifications
     let lastPunTime = 0;
@@ -226,6 +227,7 @@ window.addEventListener('load', () => {
         new Ball(250, 450, 20, '#FF6347')     // Tomato
     ];
     console.log('Balls created:', balls.length);
+    balls.forEach(ball => ball.updateSpeed());
 
     // Speed control event listener
     speedSlider.addEventListener('input', async (e) => {
