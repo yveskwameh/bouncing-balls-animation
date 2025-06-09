@@ -8,6 +8,9 @@ window.addEventListener('load', () => {
     }
     console.log('Canvas found:', canvas);
 
+    // Global speed multiplier
+    let speedMultiplier = 12;
+
     // Array of pun jokes for the notification
     const speedPuns = [
         "I'm reading a book about anti-gravity, it's impossible to put down.",
@@ -97,9 +100,6 @@ window.addEventListener('load', () => {
 
     // Handle window resize
     window.addEventListener('resize', resizeCanvas);
-
-    // Global speed multiplier
-    let speedMultiplier = 10;
 
     // Rate limiting for pun notifications
     let lastPunTime = 0;
